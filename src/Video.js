@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import io from 'socket.io-client'
 import faker from 'faker'
 
-import { IconButton, Badge, Input, Button, Box, Paper, Typography } from '@material-ui/core'
+import { IconButton, Badge, Input, Button } from '@material-ui/core'
 import VideocamIcon from '@material-ui/icons/Videocam'
 import VideocamOffIcon from '@material-ui/icons/VideocamOff'
 import MicIcon from '@material-ui/icons/Mic'
@@ -16,12 +16,16 @@ import { message } from 'antd'
 import 'antd/dist/antd.css'
 
 import  Dropzone  from "react-dropzone";
+import { useDropzone } from "react-dropzone";
 import { Row } from 'reactstrap'
 import Modal from 'react-bootstrap/Modal'
 import 'bootstrap/dist/css/bootstrap.css'
 import './Video.css'
 
 import Three from './Three'
+
+
+
 const server_url =
   process.env.NODE_ENV === 'production'
     ? 'https://video.sebastienbiollo.com'
@@ -625,7 +629,7 @@ class Video extends Component {
                     <p>Drag 'n' drop some files here, or click to select files</p>
                   </div>
                   <aside>
-                    <h4>Files</h4>
+                    <h4>Preview Files</h4>
                     <ul><Three url={files[0]}/></ul>
                   </aside>
                 </section>
