@@ -16,12 +16,12 @@ import { message } from 'antd'
 import 'antd/dist/antd.css'
 
 import  Dropzone  from "react-dropzone";
-
 import { Row } from 'reactstrap'
 import Modal from 'react-bootstrap/Modal'
 import 'bootstrap/dist/css/bootstrap.css'
 import './Video.css'
 
+import Three from './Three'
 const server_url =
   process.env.NODE_ENV === 'production'
     ? 'https://video.sebastienbiollo.com'
@@ -559,9 +559,7 @@ class Video extends Component {
 
   render() {
     const files = this.state.files.map(file => (
-      <li key={file.name}>
-        {file.name} - {file.size} bytes
-      </li>
+      URL.createObjectURL(file)
     ))
 
     if (this.isChrome() === false) {
@@ -628,7 +626,7 @@ class Video extends Component {
                   </div>
                   <aside>
                     <h4>Files</h4>
-                    <ul>{files}</ul>
+                    <ul><Three url={files[0]}/></ul>
                   </aside>
                 </section>
               )}
