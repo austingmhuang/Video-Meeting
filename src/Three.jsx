@@ -1,8 +1,8 @@
 import React from "react";
 import { Canvas } from "@react-three/fiber";
 import styled from "styled-components";
-import Controls from "./Controls";
-import Model from "./Model";
+import Controls from "./Three/Controls";
+import Model from "./Three/Model";
 
 export default function Three({ url }) {
   return (
