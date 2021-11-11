@@ -21,6 +21,7 @@
     "react-bootstrap": "^1.0.0",
     "react-css-grid": "^2.0.0-0",
     "react-dom": "^16.13.1",
+    "react-dropzone": "^11.4.2",
     "react-flexbox-grid": "^2.1.2",
     "react-grid-layout": "^0.18.3",
     "react-grid-system": "^6.3.0",
