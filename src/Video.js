@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import io from 'socket.io-client'
 import faker from 'faker'
 
-import { IconButton, Badge, Input, Button } from '@material-ui/core'
+import { IconButton, Badge, Input, Button, Box, Paper, Typography } from '@material-ui/core'
 import VideocamIcon from '@material-ui/icons/Videocam'
 import VideocamOffIcon from '@material-ui/icons/VideocamOff'
 import MicIcon from '@material-ui/icons/Mic'
@@ -15,11 +15,13 @@ import ChatIcon from '@material-ui/icons/Chat'
 import { message } from 'antd'
 import 'antd/dist/antd.css'
 
+import  Dropzone  from "react-dropzone";
 import { Row } from 'reactstrap'
 import Modal from 'react-bootstrap/Modal'
 import 'bootstrap/dist/css/bootstrap.css'
 import './Video.css'
 
+import Three from './Three'
 const server_url =
   process.env.NODE_ENV === 'production'
     ? 'https://video.sebastienbiollo.com'
@@ -45,6 +47,9 @@ class Video extends Component {
     this.videoAvailable = false
     this.audioAvailable = false
 
+    this.onDrop = (files) => {
+      this.setState({files})
+    };
     this.state = {
       video: false,
       audio: false,
@@ -56,6 +61,7 @@ class Video extends Component {
       newmessages: 0,
       askForUsername: true,
       username: faker.internet.userName(),
+      files: [],
     }
     connections = {}
 
@@ -552,6 +558,10 @@ class Video extends Component {
   }
 
   render() {
+    const files = this.state.files.map(file => (
+      URL.createObjectURL(file)
+    ))
+
     if (this.isChrome() === false) {
       return (
         <div
@@ -607,6 +617,20 @@ class Video extends Component {
                 Connect
               </Button>
             </div>
+            <Dropzone onDrop={this.onDrop}>
+              {({getRootProps, getInputProps}) => (
+                <section className="container">
+                  <div {...getRootProps({className: 'dropzone'})}>
+                    <input {...getInputProps()} />
+                    <p>Drag 'n' drop some files here, or click to select files</p>
+                  </div>
+                  <aside>
+                    <h4>Files</h4>
+                    <ul><Three url={files[0]}/></ul>
+                  </aside>
+                </section>
+              )}
+            </Dropzone>
 
             <div
               style={{

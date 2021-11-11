@@ -1,14 +1,15 @@
 import React from "react";
 import { Canvas } from "@react-three/fiber";
 import styled from "styled-components";
-import Controls from "./Controls";
-import Model from "./Model";
+import Controls from "./Three/Controls";
+import Model from "./Three/Model";
 
 export default function Three({ url }) {
   return (
     <Container>
       <Canvas>
-        <directionalLight position={[1, 1, 1]} />
+        <ambientLight intensity={0.3}/>
+        <directionalLight intensity={0.1} position={[0, 0, 0]} />
         <Controls />
         <Model url={url} />
         <gridHelper /> {/* わかりやすいようにGridPanelを表示 */}
