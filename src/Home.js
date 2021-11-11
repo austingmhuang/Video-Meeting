@@ -15,10 +15,10 @@ class Home extends Component {
 
   join = () => {
     if (this.state.url !== '') {
-      var url = this.state.url.split('/')
+      let url = this.state.url.split('/')
       window.location.href = `/${url[url.length - 1]}`
     } else {
-      var url = Math.random().toString(36).substring(2, 7)
+      let url = Math.random().toString(36).substring(2, 7)
       window.location.href = `/${url}`
     }
   }
