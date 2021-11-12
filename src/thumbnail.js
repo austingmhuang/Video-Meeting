@@ -1,3 +1,12 @@
+/**
+ * @Params
+ * ProgressEvent and self (state)
+ * 
+ * @Return void
+ * 
+ * Function serves to turn a VRM file into a cropped thumbnail image URL. 
+ */
+
 const LE = true // Binary GLTF is little endian.
 const MAGIC_glTF = 0x676c5446
 const GLB_FILE_HEADER_SIZE = 12
