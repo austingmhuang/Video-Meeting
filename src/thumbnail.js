@@ -93,7 +93,7 @@ function getThumbnail(jsonData, buffer, offset) {
   return URL.createObjectURL(new Blob([imgBuf]))
 }
 
-export default function onLoadHandler(e) {
+export default function onLoadHandler(e, self) {
   let raw = e.target.result
   let ds = new DataView(raw)
 
@@ -115,5 +115,5 @@ export default function onLoadHandler(e) {
     return
   }
 
-  return getThumbnail(jsonData, ds.buffer, offset)
+  self.setState({imagePreviewUrl: getThumbnail(jsonData, ds.buffer, offset)})
 }
