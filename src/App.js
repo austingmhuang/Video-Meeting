@@ -13,7 +13,6 @@ class App extends Component {
           <Switch>
             <Route path="/preview" exact component={Three} />
             <Route path="/" exact component={Home} />
-            {/*<Route path="/:url" component={Video} />*/}
             <Route path="/mediapipe" exact component={MediaPipe} />
             <Route path="/:url" component={Video} />
           </Switch>
