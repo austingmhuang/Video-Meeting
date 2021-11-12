@@ -23,6 +23,7 @@ import 'bootstrap/dist/css/bootstrap.css'
 import './Video.css'
 
 import Three from './Three'
+import getThumbnail from './thumbnail'
 
 const server_url =
   process.env.NODE_ENV === 'production'
@@ -50,8 +51,14 @@ class Video extends Component {
     this.audioAvailable = false
 
     this.onDrop = (files) => {
-      this.setState({ files })
-    }
+      this.setState({files})
+      let reader = new FileReader();
+      let input = files[0];
+
+      reader.addEventListener('load', (e) => getThumbnail(e, this), true)
+      reader.readAsArrayBuffer(input)
+    };
+
     this.state = {
       video: false,
       audio: false,
@@ -63,7 +70,9 @@ class Video extends Component {
       newmessages: 0,
       askForUsername: true,
       username: faker.internet.userName(),
+      file: '',
       files: [],
+      imagePreviewUrl: '',
     }
     connections = {}
 
@@ -560,7 +569,11 @@ class Video extends Component {
   }
 
   render() {
-    const files = this.state.files.map((file) => URL.createObjectURL(file))
+    let {imagePreviewUrl} = this.state;
+    console.log(imagePreviewUrl)
+    const files = this.state.files.map(file => (
+      URL.createObjectURL(file)
+    ))
 
     if (this.isChrome() === false) {
       return (
@@ -627,10 +640,9 @@ class Video extends Component {
                     </p>
                   </div>
                   <aside>
-                    <h4>Preview Files</h4>
-                    <ul>
-                      <Three url={files[0]} />
-                    </ul>
+                    <h4>Files</h4>
+                    <ul><img src={imagePreviewUrl}/></ul>
+                    <ul><Three url={files[0]}/></ul>
                   </aside>
                 </section>
               )}
