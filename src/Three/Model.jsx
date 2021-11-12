@@ -1,16 +1,16 @@
-import React, { Suspense } from "react";
-import Avatar from "./Avatar";
+import React, { Suspense } from 'react'
+import Avatar from './Avatar'
 
-export default function Model({url}) {
+export default function Model({ url }) {
   if (url === undefined) {
-    url = "../models/AnimeGirl.vrm";
+    url = '../models/AnimeGirl.vrm'
   }
 
   return (
     <>
-        <Suspense fallback={null}>
-            <Avatar url={url} />
-        </Suspense>
+      <Suspense fallback={null}>
+        <Avatar url={url} />
+      </Suspense>
     </>
-  );
+  )
 }

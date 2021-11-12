@@ -15,16 +15,14 @@ import ChatIcon from '@material-ui/icons/Chat'
 import { message } from 'antd'
 import 'antd/dist/antd.css'
 
-import  Dropzone  from "react-dropzone";
-import { useDropzone } from "react-dropzone";
+import Dropzone from 'react-dropzone'
+import { useDropzone } from 'react-dropzone'
 import { Row } from 'reactstrap'
 import Modal from 'react-bootstrap/Modal'
 import 'bootstrap/dist/css/bootstrap.css'
 import './Video.css'
 
 import Three from './Three'
-
-
 
 const server_url =
   process.env.NODE_ENV === 'production'
@@ -52,8 +50,8 @@ class Video extends Component {
     this.audioAvailable = false
 
     this.onDrop = (files) => {
-      this.setState({files})
-    };
+      this.setState({ files })
+    }
     this.state = {
       video: false,
       audio: false,
@@ -562,9 +560,7 @@ class Video extends Component {
   }
 
   render() {
-    const files = this.state.files.map(file => (
-      URL.createObjectURL(file)
-    ))
+    const files = this.state.files.map((file) => URL.createObjectURL(file))
 
     if (this.isChrome() === false) {
       return (
@@ -622,15 +618,19 @@ class Video extends Component {
               </Button>
             </div>
             <Dropzone onDrop={this.onDrop}>
-              {({getRootProps, getInputProps}) => (
+              {({ getRootProps, getInputProps }) => (
                 <section className="container">
-                  <div {...getRootProps({className: 'dropzone'})}>
+                  <div {...getRootProps({ className: 'dropzone' })}>
                     <input {...getInputProps()} />
-                    <p>Drag 'n' drop some files here, or click to select files</p>
+                    <p>
+                      Drag 'n' drop some files here, or click to select files
+                    </p>
                   </div>
                   <aside>
                     <h4>Preview Files</h4>
-                    <ul><Three url={files[0]}/></ul>
+                    <ul>
+                      <Three url={files[0]} />
+                    </ul>
                   </aside>
                 </section>
               )}
