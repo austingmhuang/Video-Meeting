@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import io from 'socket.io-client'
 import faker from 'faker'
 
-import { IconButton, Badge, Input, Button, Box, Paper, Typography } from '@material-ui/core'
+import { IconButton, Badge, Input, Button } from '@material-ui/core'
 import VideocamIcon from '@material-ui/icons/Videocam'
 import VideocamOffIcon from '@material-ui/icons/VideocamOff'
 import MicIcon from '@material-ui/icons/Mic'
@@ -15,7 +15,8 @@ import ChatIcon from '@material-ui/icons/Chat'
 import { message } from 'antd'
 import 'antd/dist/antd.css'
 
-import  Dropzone  from "react-dropzone";
+import Dropzone from 'react-dropzone'
+import { useDropzone } from 'react-dropzone'
 import { Row } from 'reactstrap'
 import Modal from 'react-bootstrap/Modal'
 import 'bootstrap/dist/css/bootstrap.css'
@@ -630,11 +631,13 @@ class Video extends Component {
               </Button>
             </div>
             <Dropzone onDrop={this.onDrop}>
-              {({getRootProps, getInputProps}) => (
+              {({ getRootProps, getInputProps }) => (
                 <section className="container">
-                  <div {...getRootProps({className: 'dropzone'})}>
+                  <div {...getRootProps({ className: 'dropzone' })}>
                     <input {...getInputProps()} />
-                    <p>Drag 'n' drop some files here, or click to select files</p>
+                    <p>
+                      Drag 'n' drop some files here, or click to select files
+                    </p>
                   </div>
                   <aside>
                     <h4>Files</h4>
